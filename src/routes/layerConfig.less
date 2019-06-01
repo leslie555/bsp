@@ -1,0 +1,19 @@
+@import '../themes/default.less';
+.normal {
+  height: 80%;
+}
+/* 页面布局*/
+.router_layer_size {
+  background-color:@component-background;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  & > div {
+    width: 100%;
+  }
+  & > div:last-child {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

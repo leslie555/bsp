@@ -1,0 +1,46 @@
+.boxgray {
+  color: gray;
+  margin: 0 auto;
+  text-align: left;
+  min-width: 140px;
+}
+
+.boxhover {
+  letter-spacing: 0;
+  padding-left: 20px;
+}
+
+.boxhover:hover {
+  letter-spacing: 5px;
+  background: radial-gradient(rgb(10, 239, 237) 0%, rgba(5, 18, 36, 0.3) 80%);
+  font-size: 18px;
+  text-align: center !important;
+  padding-left: 0px;
+}
+
+.boxhover:after,
+.boxhover:before {
+  backface-visibility: hidden;
+  bottom: 0px;
+  content: '';
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.boxhover:hover:after,
+.boxhover:hover:before {
+  backface-visibility: hidden;
+  border-color: #fff;
+  border: 1px solid #fff;
+  transition: width 350ms ease-in-out;
+  width: 100%;
+}
+
+.boxhover:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 100%;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" href="/HiatmpPro/HiMap/himap.css" type="text/css" />
+    
+    <script src="/HiatmpPro/HiMap/himap.js"  maptype = "arcgis" onready = "mapready"></script>
+  
+    <title></title>
+    <style>
+	  html, body, #map {
+	    padding: 0;
+	    margin: 0;
+	    height: 800px;
+	    overflow-x: hidden; overflow-y: hidden;
+	  }
+	</style>
+    <script>
+    	var _MapApp;
+    	function mapready(){
+    		_MapApp = new HiMap(document.getElementById("map"));
+            parent._MapApp = _MapApp;
+			if(typeof(parent.parent)!='undefined' && null!=parent.parent){
+                if(typeof(parent.parent.onmapload)!='undefined'){
+                    parent.parent.onmapload(_MapApp);
+                }               
+            }
+    	}
+    </script>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden">
+	<div id="map"></div>	
+</body>
+</html>

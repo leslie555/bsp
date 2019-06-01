@@ -1,0 +1,74 @@
+@import '../../themes/default.less';
+
+.normal {
+  position: relative;
+  .topBlock {
+    .input {
+      height: 32px;
+      width: 40px;
+      margin-top: 6px;
+      position: relative;
+      border: 1px solid @border-color-base;
+      background-color: @component-background;
+      transition: all 0.3s;
+      &:hover {
+        border-color: #3dadfc;
+      }
+      &:focus,
+      &:active {
+        border-color: #3dadfc;
+        outline: 0;
+        -webkit-box-shadow: 0 0 0 2px rgba(20, 141, 239, 0.2);
+        box-shadow: 0 0 0 2px rgba(20, 141, 239, 0.2);
+      }
+      & > input {
+        height: 100%;
+        width: 100%;
+        background: none transparent;
+        border: 0 none;
+        position: absolute;
+      }
+      span {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        line-height: 30px;
+        padding: 0 11px;
+        z-index: 6;
+      }
+    }
+    .num {
+      position: absolute;
+      z-index: 0;
+      top: -4px;
+      padding-left: 45px;
+      width: 100%;
+    }
+  }
+  .bottomBlock {
+    position: absolute;
+    width: 248px;
+    height: 200px;
+    padding-right: 6px;
+    z-index: 99;
+    background-color: @component-background;
+    border: 1px solid @border-color-base;
+    border-top: none;
+    div {
+      cursor: hand;
+      margin-left: 6px;
+      margin-top: 6px;
+    }
+    :global {
+      label {
+        margin-left: 10px;
+        cursor: hand;
+      }
+      .ant-tag {
+        margin-right: 0;
+      }
+    }
+  }
+}

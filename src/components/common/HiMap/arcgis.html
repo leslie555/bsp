@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<head>
+  <meta content="text/html; charset=utf-8" />
+
+  <script src="/HiatmpPro/HiMap/himap.js" maptype="arcgis" onready="mapready"></script>
+  <title>maptest</title>
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+  </style>
+  <script>
+    var _MapApp;
+    function mapready() {
+      _MapApp = new HiMap(document.getElementById("map"));
+      _MapApp.TrackPlay = TrackPlay;
+
+      console.log(_MapApp.TrackPlay);
+    }
+    // function onVideoClick(url) {
+    //   url();
+    //   alert('123');
+    //   // debugger;
+    //   // layer.msg(url);
+    // }
+    function onVideoClick(url) {
+      // alert(url);
+      if (url == null || url.length == 0) {
+        // parent.layer.open({
+        //   title: '提醒'
+        //   , content: '该设备没有配置RTSP'
+        // });
+        alert('该设备没有配置RTSP');
+        return;
+      } else {
+        // alert('准备播放视频啦');
+        const str = (
+          '<!DOCTYPE html>' +
+          '<html>' +
+          '<body style="margin: 0px; background: #0e0e0e;">' +
+          '<OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" width="750px" height="460px" id="vlc" name="vlc" events="True">' +
+          '<param name="MRL" value="' + url + '" />' +
+          '<param name="ShowDisplay" value="true" />' +
+          '<param name="AutoLoop" value="false" />' +
+          '<param name="AutoPlay" value="false" />' +
+          '<param name="Volume" value="50" />' +
+          '<param name="StartTime" value="0" />' +
+          '<param name="wmode" value="transparent">' +
+          '<param name="quality" value="high" />' +
+          '<EMBED pluginspage="http://www.videolan.org" type="application/x-vlc-plugin" progid="VideoLAN.VLCPlugin.2" width="535px" height="370px" name="vlc" id="vlc" align="center"></EMBED>' +
+          '</OBJECT>' +
+          '</body>' +
+          '</html>'
+        );
+        openWindowResizable('', '600', '800', str);
+        // const a = window.open('', '', 'height=600,width=800,top=100,left=300,scrollbars=yes, resizable=no,location=no, status=no');
+        // a.document.write(str);
+      }
+      // url += '/realtime.264';
+      // parent.layer.open({
+      //   //   // type: 1,
+      //   content: '<OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" width="750px" height="460px" id="vlc" name="vlc" events="True">' +
+      //     '<param name="MRL" value="' + url + '" />' +
+      //     '<param name="ShowDisplay" value="true" />' +
+      //     '<param name="AutoLoop" value="false" />' +
+      //     '<param name="AutoPlay" value="false" />' +
+      //     '<param name="Volume" value="50" />' +
+      //     '<param name="StartTime" value="0" />' +
+      //     '<param name="wmode" value="transparent">' +
+      //     '<param name="quality" value="high" />' +
+      //     '<EMBED pluginspage="http://www.videolan.org" type="application/x-vlc-plugin" progid="VideoLAN.VLCPlugin.2" width="535px" height="370px" name="vlc" id="vlc" align="center"></EMBED>' +
+      //     '</OBJECT>'
+      // });
+    }
+    /** 
+     * 打开一个居中的窗口，可变大小 
+     * @param pageUrl url链接 
+     * @param innerWidth 长度，不带px 
+     * @param innerHeight 宽度，不带px 
+     */
+    function openWindowResizable(pageUrl, innerWidth, innerHeight, str) {
+      var screenWidth = (screen.availWidth - innerWidth) / 2;
+      var screenHeight = (screen.availHeight - innerHeight) / 2;
+      var a = window.open(pageUrl, "_blank", "left=" + screenWidth + ",top=" + screenHeight + ",width=" + innerWidth + ",height=" + innerHeight + ",resizable=yes,scrollbars=no,status=no,toolbar=no,menubar=no,location=no");
+      a.document.write(str);
+      console.log(a);
+    };  
+  </script>
+</head>
+
+<body>
+  <div id="map" style="top: 0px; left: 0px; border-bottom: 0px; width:100%;height:100%;background: white;"></div>
+</body>
+
+</html>

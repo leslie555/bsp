@@ -1,0 +1,196 @@
+@import '../../themes/default.less';
+
+.normal {
+  overflow: auto;
+  height: e('calc(100vh - 67px)');
+  .contentStyle {
+    height: 98%;
+    overflow: auto;
+  }
+  .contentStyle :global .ant-tabs-content {
+    height: 95%;
+  }
+
+  :global {
+    .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab .anticon-close {
+      color: @text-color;
+    }
+    .ant-tabs-content {
+      overflow: auto;
+      min-height: e('calc(100vh - 106px)');
+    }
+
+    .ant-tabs:not(.ant-tabs-vertical) > .ant-tabs-content {
+      padding-left: 1px;
+    }
+    .ant-tabs.ant-tabs-card > .ant-tabs-bar {
+      padding-bottom: 0;
+      margin-bottom: 2px;
+      .ant-tabs-nav-container {
+        height: 32px;
+        background-color: @text-color-secondary;
+      }
+      border-bottom: 1px solid @primary-color;
+
+      .ant-tabs-tab {
+        // tab字体颜色
+        color: @text-color;
+        border-radius: 0 5px 0 0;
+        margin-right: 2px;
+        -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        -o-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        line-height: 30px;
+      }
+    }
+    .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+      background: @layout-body-background;
+    }
+  }
+}
+.frameContain {
+  overflow-y: auto;
+  width: 100%;
+  min-height: e('calc(100vh - 106px)');
+}
+:global {
+  iframe {
+    color: @text-color;
+  }
+  body {
+    color: @text-color;
+  }
+}
+.page {
+  background-color: transparent;
+}
+
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translate(2px, 2px);
+  }
+  25% {
+    -webkit-transform: translate(-2px, -2px);
+  }
+  50% {
+    -webkit-transform: translate(0px, 0px);
+  }
+  75% {
+    -webkit-transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(-2px, 2px);
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translate(2px, 2px);
+  }
+  25% {
+    transform: translate(-2px, -2px);
+  }
+  50% {
+    transform: translate(0px, 0px);
+  }
+  75% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(-2px, 2px);
+  }
+}
+.shake {
+  -webkit-animation: shake 0.2s infinite;
+  animation: shake 0.2s infinite;
+  width: 20px;
+  height: 14px;
+  :global {
+    .anticon-message:before {
+    }
+  }
+}
+.halo {
+  margin-right: 8px;
+  width: 8px;
+  height: 8px;
+}
+.halo:before,
+.halo:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #00fc06;
+  /*left: -120px;
+  top: -120px;*/
+  border-radius: 8px;
+  animation-name: Grow;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  /* Safari and Chrome */
+
+  -webkit-animation-name: Grow;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+/*.halo:before {
+    box-shadow: 0px 0px 40px 10px #ff0300;
+}
+.halo:after {
+    box-shadow: inset 0px 0px 40px 10px #ff0300;
+}*/
+@-webkit-keyframes Grow {
+  0% {
+    transform: scale(1);
+    -ms-transform: scale(1);
+    /* IE 9 */
+
+    -webkit-transform: scale(1);
+    /* Safari and Chrome */
+    box-shadow: 0px 0px 2px 0px #abff07;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0px 0px 8px 1px #abff07;
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    -ms-transform: scale(1);
+    /* IE 9 */
+
+    -webkit-transform: scale(1);
+    /* Safari and Chrome */
+    box-shadow: 0px 0px 2px 2px #abff07;
+    opacity: 1;
+  }
+}
+@keyframes Grow {
+  0% {
+    transform: scale(1);
+    -ms-transform: scale(1);
+    /* IE 9 */
+
+    -webkit-transform: scale(1);
+    /* Safari and Chrome */
+    box-shadow: 0px 0px 2px 0px #abff07;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0px 0px 8px 1px #abff07;
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    -ms-transform: scale(1);
+    /* IE 9 */
+
+    -webkit-transform: scale(1);
+    /* Safari and Chrome */
+    box-shadow: 0px 0px 2px 0px #abff07;
+    opacity: 1;
+  }
+}

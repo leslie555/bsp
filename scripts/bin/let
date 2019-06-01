@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+
+const copy = require('../lib/copy.js');
+
+program.version('0.1.0')
+  .option('copy', 'copy.js dependency to config/components')
+  .parse(process.argv);
+if (program.c) {
+  copy(process.argv);
+}
+if (program.copy) {
+  copy(process.argv);
+}

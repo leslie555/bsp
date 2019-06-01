@@ -1,0 +1,502 @@
+@import 'themes/default.less';
+:global {
+  html,
+  body,
+  #root {
+    height: 100%;
+    color:@text-color;
+  }
+
+  .colorWeak {
+    filter: invert(80%);
+  }
+
+  canvas {
+    display: block;
+  }
+
+  body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .global-spin {
+    width: 100%;
+    margin: 40px 0 !important;
+  }
+
+  // temp fix for https://github.com/ant-design/ant-design/commit/a1fafb5b727b62cb0be29ce6e9eca8f579d4f8b7
+
+  // temp fix for https://github.com/ant-design/ant-design/commit/a1fafb5b727b62cb0be29ce6e9eca8f579d4f8b7
+
+  .ant-spin-container {
+    overflow: visible !important;
+  }
+  .ant-input-disabled {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  /*定义公共的样式,只能用定义的公共颜色变量*/
+  /******************** 滚动条样式调整********************/
+  ::-webkit-scrollbar-track {
+    //滚动条凹槽的颜色，还可以设置边框属性
+    background-color: @scrollbar-track-color;
+  }
+  ::-webkit-scrollbar {
+    //滚动条的宽度
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-thumb {
+    //滚动条的设置
+    background-color: @scrollbar-thumb-color;
+    background-clip: padding-box;
+    min-height: 28px;
+    border: 2px solid @scrollbar-track-color;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: @scrollbar-thumb-hover-color;
+  }
+  /******************** 滚动条样式结束********************/
+  body {
+    /*layout-content*/
+    /*三角箭头的颜色*/
+    scrollbar-arrow-color: @scrollbar-thumb-color;
+    /*滚动条滑块按钮的颜色*/
+    scrollbar-face-color: @scrollbar-thumb-color;
+    /*滚动条整体颜色*/
+    scrollbar-highlight-color: @scrollbar-thumb-color;
+    /*滚动条阴影*/
+    scrollbar-shadow-color: @scrollbar-thumb-color;
+    /*滚动条轨道颜色*/
+    scrollbar-track-color: @scrollbar-track-color;
+    /*layout-content*/
+    .ant-tabs-tabpane {
+      padding: 0;
+      padding-bottom: 0;
+    }
+
+    /******************包角样式***************************/
+    .outline-out {
+      border: 1px solid @outlineBorderColor;
+      box-shadow: 2px 2px 5px #b8b8b8;
+      position: relative;
+      padding: (@outlineConerWidth - 1)/2;
+      background: @outline-bg;
+      margin: 5px;
+    }
+    .outline-out-top {
+      /*margin-bottom: 30px;*/
+    }
+    .outline-out::before {
+      /*content: '';
+      display: block;
+      position: absolute;
+      top: -(@outlineConerWidth+1)/2;
+      left: -(@outlineConerWidth+1)/2;
+      width: @outlineConerLength;
+      height: @outlineConerLength;
+      border-top: @outlineConerWidth solid @outlineConerColor;
+      border-left: @outlineConerWidth solid @outlineConerColor;*/
+    }
+    .outline-out::after {
+      /*content: '';
+      display: block;
+      position: absolute;
+      bottom: -(@outlineConerWidth+1)/2;
+      right: -(@outlineConerWidth+1)/2;
+      width: @outlineConerLength;
+      height: @outlineConerLength;
+      border-bottom: @outlineConerWidth solid @outlineConerColor;
+      border-right: @outlineConerWidth solid @outlineConerColor;*/
+    }
+    .outline-inner {
+      /*width: 100%;*/
+    }
+    .outline-inner::before {
+      /*content: '';
+      display: block;
+      position: absolute;
+      bottom: -(@outlineConerWidth+1)/2;
+      left: -(@outlineConerWidth+1)/2;
+      width: @outlineConerLength;
+      height: @outlineConerLength;
+      border-bottom: @outlineConerWidth solid @outlineConerColor;
+      border-left: @outlineConerWidth solid @outlineConerColor;*/
+    }
+    .outline-inner::after {
+      /*content: '';
+      display: block;
+      position: absolute;
+      top: -(@outlineConerWidth+1)/2;
+      right: -(@outlineConerWidth+1)/2;
+      width: @outlineConerLength;
+      height: @outlineConerLength;
+      border-top: @outlineConerWidth solid @outlineConerColor;
+      border-right: @outlineConerWidth solid @outlineConerColor;*/
+    }
+    /******************包角样式结束***************************/
+    .form-outline-inner-padding {
+      padding: 20px 20px 0 20px;
+    }
+    .outline-inner-padding {
+      padding: 10px 0 10px 20px;
+    }
+    /*内容bg*/
+    .outline-bg {
+      background: @outline-bg;
+      padding: 8px 16px 8px 16px;
+      margin-bottom: 20px;
+    }
+    /******************视频播放样式开始**************************/
+    .videoview {
+      width: 100%;
+      height: 200px;
+      padding: 5px;
+    }
+    .red{
+      color: red;
+    }
+    .uploadinfo{
+      margin-left: 20px;
+    }
+    .displayNone {
+      display: none;
+    }
+    /******************视频播放样式结束**************************/
+    /******************input样式开始**************************/
+    input[type=text]:disabled{
+      cursor: default;
+    }
+    button[disabled]{
+      cursor: default;
+    }
+  .ant-form label{
+    font-size: 12px;
+    padding-right: 2px;
+  }
+    /******************input样式结束**************************/
+    /******************table样式**************************/
+    .selectedRow {
+      background: #a4c1ff;
+    }
+    /*table奇偶*/
+    .tableoddRow {
+      background: #fff;
+    }
+    .tableevenRow {
+      background: #fff;
+    }
+    .lightRow{
+      background: #d29494;
+    }
+    /*表头右边框*/
+    .ant-table-thead > tr > th {
+      border-right: 2px solid @outline-bg;
+      background-color: @table-header-bg;
+    }
+    .ant-table td {
+      white-space: nowrap;
+    }
+    /******************table结束**************************/
+    /***********************motal框***********************/
+    .ant-modal-content {
+      background-color: @outline-bgNoa;
+    }
+    .ant-modal-body {
+      padding: 14px 14px 0 14px;
+      // word-wrap:normal;
+    }
+    .ant-modal-header {
+      padding: 5px 10px;
+      background: #2C4585;
+    }
+    .ant-modal-close-x {
+      width: 32px;
+      height: 56px;
+      line-height: 33px;
+      color: @text-white;
+    }
+    .ImgModal .ant-modal-body {
+      padding: 14px;
+    }
+    .ant-modal-title {
+      color: #fff;
+    }
+    /***********************motal框结束***********************/
+    /*********************** datepicker**********************/
+    // 样色调整
+    .ant-calendar-header .ant-calendar-prev-century-btn,
+    .ant-calendar-header .ant-calendar-next-century-btn,
+    .ant-calendar-header .ant-calendar-prev-decade-btn,
+    .ant-calendar-header .ant-calendar-next-decade-btn,
+    .ant-calendar-header .ant-calendar-prev-month-btn,
+    .ant-calendar-header .ant-calendar-next-month-btn,
+    .ant-calendar-header .ant-calendar-prev-year-btn,
+    .ant-calendar-header .ant-calendar-next-year-btn {
+      color: @text-white;
+    }
+    .ant-calendar .ant-calendar-ok-btn{
+      border-color:@primary-color;
+      background-color: @primary-color;
+    }
+    .ant-calendar .ant-calendar-ok-btn:hover,
+    .ant-calendar .ant-calendar-ok-btn:focus,
+    .ant-calendar .ant-calendar-ok-btn:active,
+    .ant-calendar .ant-calendar-ok-btn.active{
+      border-color:@primary-color;
+      background-color: @primary-color;
+    }
+    li.ant-calendar-time-picker-select-option-selected {
+      background-color: @primary-color;
+    }
+    // 日历图标距离右边的距离
+    .ant-calendar-picker-clear,
+    .ant-calendar-picker-icon {
+      right: 8px;
+    }
+    // input框不可用
+    .ant-calendar-input {
+      pointer-events: none;
+    }
+    // today隐藏
+    .ant-calendar .ant-calendar-today-btn {
+      display: none;
+    }
+    /********************** datepicker结束*******************/
+
+    .primary-color {
+      color: @primary-color;
+      font-size: 16px;
+    }
+    .ant-select-arrow {
+      color: @primary-color;
+    }
+    /* switch*/
+    .ant-switch {
+      background-color: lighten(@primary-color, 20%);
+    }
+    .ant-switch-checked {
+      background-color: @primary-color;
+    }
+
+    /* checkbox */
+    .ant-checkbox-inner{
+      background: none;
+    }
+    .ant-checkbox-checked .ant-checkbox-inner{
+      background-color: @primary-color;
+      border: 1px solid @primary-color;
+    }
+
+    /* pagination*/
+    .ant-table-pagination.ant-pagination {
+      text-align: center;
+      float: none;
+    }
+    .ant-pagination-item,
+    .ant-pagination-prev .ant-pagination-item-link,
+    .ant-pagination-next .ant-pagination-item-link {
+      border: none;
+      background: none;
+    }
+
+    .allNumLight {
+      color: @commonLightColor;
+      font-size: 21px;
+    }
+
+    .ant-list-split .ant-list-item {
+      padding-top: 0;
+      border-bottom: none;
+      border-top: 1px solid @primary-color;
+    }
+
+    .outline-bgg {
+      background: @outline-bg;
+      position: relative;
+    }
+    .outline-border {
+      border: 1px solid @primary-color;
+    }
+
+    /* alert*/
+    .ant-alert-info {
+      border: none;
+    }
+    .ant-alert.ant-alert-no-icon {
+      padding: 5px 10px;
+    }
+    .ant-alert {
+      border-radius: 0;
+    }
+    /* 按钮高度*/
+    .ant-btn {
+      height: 30px;
+      color:#fff;
+      border-radius: 2px;
+      background-color: #4F6FBA;
+      border-color: #4F6FBA;
+      &:hover {
+        background-color: #7890C9;
+        border-color: #7890C9;
+        color: #fff;
+      }
+      &:active {
+        background-color: #4F6FBA;
+        border-color: #4F6FBA;
+      }
+
+      &:focus {
+        background-color: #4F6FBA;
+        border-color: #4F6FBA;
+      }
+    }
+
+    .ant-btn-circle, .ant-btn-icon-only {
+      height: 30px;
+      color:#fff;
+      border-radius: 50%;
+    }
+
+    .ant-select-dropdown-menu-item:hover {
+      background-color: @primary-color !important;
+    }
+    /* 暂无数据*/
+    .ant-list-empty-text {
+      color: @text-white;
+    }
+
+    /* ellipsis*/
+    .ellipsis {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* 车牌居中*/
+    .car-num-style {
+      text-align: center;
+    }
+
+    .CommonOpacity {
+      opacity: 0;
+    }
+    /* 时间轴防止挡住*/
+    .ant-timeline {
+      line-height: 24px;
+    }
+
+    .ant-dropdown-menu-item {
+      padding: 5px 7px;
+    }
+    /*form*/
+    .ant-form-item-label label:after {
+      margin: 0;
+      content: '：';
+    }
+    .spForm label {
+      width: 70px;
+      display: inline-block;
+      text-align: right;
+    }
+    /* form*/
+
+    /* 页面布局*/
+    .routerOut {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      & > div {
+        width: 100%;
+      }
+      & > div:last-child {
+        flex: auto;
+        display: flex;
+      }
+    }
+    /* 页面布局*/
+    .ant-table-placeholder {
+      color: #aaa;
+    }
+
+    /*图片上传ie错位兼容*/
+    .ant-upload-list-item-uploading,
+    .ant-upload-list-item-done {
+      height: 100%;
+    }
+    .ant-upload.ant-upload-select-picture-card {
+      display: inline-table;
+    }
+    /*图片上传ie错位兼容结束*/
+    /* 表格图标*/
+    .table-right {
+      margin-right: 5px;
+      font-size: 14px;
+    }
+
+    /*Modal confirm 按钮样式  原样式白底白字无法显示*/
+    .ant-confirm-btns .ant-btn {
+      height: 30px;
+      background-color: #148def;
+      border-color: #148def;
+      &:hover {
+        background-color: #34a9f7;
+        border-color: #34a9f7;
+        color: #fff;
+      }
+      &:active {
+        background-color: #0c7fbf;
+        border-color: #0c7fbf;
+      }
+
+      &:focus {
+        background-color: #0c7fbf;
+        border-color: #0c7fbf;
+      }
+    }
+
+    .ant-modal-close {
+      color: #fff;
+    }
+    // 全局table样式 避免各功能行高不一致
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+      padding: 6px 8px;
+      // word-break: break-word;
+    }
+    // 全局TREE节点选中样式
+    .ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
+      width: 90%;
+      background-color: @primary-color;
+      color: #fff;
+    }
+    .ant-notification-notice-close{
+     color:@text-color;
+    }
+    .antdInput{
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-variant: tabular-nums;
+      list-style: none;
+      -webkit-font-feature-settings: 'tnum';
+      font-feature-settings: 'tnum';
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 32px;
+      padding: 4px 11px;
+      color: rgba(0, 0, 0, 0.65);
+      font-size: 14px;
+      line-height: 1.5;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+  }
+}
+

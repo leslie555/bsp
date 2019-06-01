@@ -1,0 +1,239 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>视频拉起</title>
+  <style>
+    body {
+      margin: 0px;
+      overflow: hidden
+    }
+  </style>
+  <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="HiMsg.js"></script>
+  <script type="text/javascript">
+//    alert(window.document.location.href);
+//    var winurl=window.document.location.href;
+    function GetUrlParam(paraName) {
+      var url = window.document.location.href.toString();
+      var arrObj = url.split("?");
+
+      if (arrObj.length > 1) {
+        var arrPara = arrObj[1].split("&");
+        var arr;
+
+        for (var i = 0; i < arrPara.length; i++) {
+          arr = arrPara[i].split("=");
+
+          if (arr != null && arr[0] == paraName) {
+            return arr[1];
+          }
+        }
+        return "";
+      }
+      else {
+        return "";
+      }
+    }
+
+//    var mdsid=GetUrlParam("policeid");//警号
+//    alert(mdsid);
+    function initMDSParam()
+    {
+      var voiceVideo = document.getElementById("IPDispatcherCtrl");
+      if(null == voiceVideo || "undefined" ==voiceVideo)
+      {
+//        $('body').append("<OBJECT ID='IPDispatcherCtrl' CLASSID='CLSID:A1347CC2-E5A5-4717-A8DA-CD0AA97A68D9' CODEBASE='IPDispatcherCOM.cab#version=1,0,0,1' width='0' height='0'></OBJECT>");
+        //注册事件回调函数
+//        registerVideoEvent();
+      }
+       registerVideoEvent();
+      //如果已登录注销调度台控件
+      closeIPDispatcher();
+      //初始化调度台
+      initVideoCtrl();
+    }
+//绑定事件
+function attachISTVideoEvent(etype,func){
+  document.getElementById("IPDispatcherCtrl").attachEvent(etype,func);
+}
+
+    /**
+     * 注册调度台事件
+     */
+    function registerVideoEvent()
+    {
+      //注册回调
+      attachISTVideoEvent("OnPhoneLineStateEvent", function(nLine,nState,nMediaType){
+        //var VideoWindow = document.getElementById("VideoWindow0");
+        // alert('nLine'+nLine);
+        IPDispatcherCtrl.SetVideoWindow(1, VideoWindow0.GetWindow());
+        VideoWindow0.RefreshWindow();
+      });
+    }
+    /**
+     * 浏览器异常退出情况时候，必须调用此方法,否则注册信息还是停留在服务器端，下次登陆会提示已在其他地点登陆，刷新界面或者关闭界面的时候用此
+     */
+    function closeIPDispatcher() {
+      var voiceCtrl = document.getElementById("IPDispatcherCtrl");
+      if(null == voiceCtrl || "undefined" ==voiceCtrl){
+        return;
+      }
+
+      var isInit = IPDispatcherCtrl.IsInitialize();
+      var isLog = IPDispatcherCtrl.IsLogin();
+      if (isInit == 1 && isLog==1)//登录
+      {
+        IPDispatcherCtrl.Logout();
+      }
+      IPDispatcherCtrl.OnCloseIPDispatcher();
+      IPDispatcherCtrl.DestroyInstance();
+
+      var isInit = IPDispatcherCtrl.IsInitialize();
+      if (isInit == 1)
+      {
+        IPDispatcherCtrl.OnCloseIPDispatcher();
+        setCtrlUnUsed();
+      }
+
+    }
+    function setCtrlUnUsed()
+    {
+      //data.result==false
+      //设置调度台下线已被使用失败！
+    }
+    /**
+     * 初始化调度台
+     */
+    function initVideoCtrl()
+    {
+      var url = "/HiatmpPro/scs/mds/initMdsConf";
+      $.ajax({
+        url:url,
+        type: 'get',
+        dataType:'json',
+        cache: false,
+        success: function (data) {
+          if(data.result==false){
+            alert("初始化调度台失败！");
+          }else{
+            var result = data.params;
+            if(result == null || typeof(result) == "undefined")
+            {
+              alert("初始化调度台失败！");
+              return;
+            }
+			try{
+				IPDispatcherCtrl.strName = result.username;
+				IPDispatcherCtrl.strPassword = result.password;
+				IPDispatcherCtrl.strServer = result.serverip;
+				IPDispatcherCtrl.strLocal = result.localip;
+				IPDispatcherCtrl.strLicense = result.license;
+				var bresult = IPDispatcherCtrl.IsInitialize();
+				IPDispatcherCtrl.Initialize();
+				bresult = IPDispatcherCtrl.IsInitialize();
+				//alert('1111->'+bresult);
+				var timeout = 0;
+				if (bresult == 0) {
+				  alert("调度台没有初始化！");
+				  return;
+				}
+				IPDispatcherCtrl.Logout();
+				var ret=IPDispatcherCtrl.Login(10);
+				//alert('ret-->'+ret);
+
+				setTimeout(function(){
+				  var mdsid=GetUrlParam("policeid");//警号
+	//              alert(mdsid);
+				  var options = options || {};
+				  options.linenum = getLineNum(mdsid);
+	//              IPDispatcherCtrl.ResumeCall(options.linenum);
+	//
+	//              IPDispatcherCtrl.SetPhoneCurrentLine(options.linenum);
+
+				  IPDispatcherCtrl.VideoCall(1, mdsid);
+
+				  //alert('IPDispatcherCtrl.ResumeCall(options.linenum)-->'+IPDispatcherCtrl.ResumeCall(options.linenum));
+				  // alert('IPDispatcherCtrl.SetPhoneCurrentLine(options.linenum)-->'+IPDispatcherCtrl.SetPhoneCurrentLine(options.linenum));
+				  // alert('IPDispatcherCtrl.VideoCall(options.linenum, mdsid)-->'+IPDispatcherCtrl.VideoCall(options.linenum, mdsid));
+				},3000);
+				setCtrlUsed();
+			}
+			catch(e){
+				alert('服务异常！');
+			}
+          }
+        }
+      });
+
+    }
+    function setCtrlUsed()
+    {
+      //data.result==false
+      //设置调度台已被使用失败！
+    }
+    // 线路状态
+    var linesInfo = [];
+    for(var i=0;i<16;i++){
+      linesInfo[i] = {mdsid:''};
+    }
+
+    /**
+     * 获取线路号
+     * @returns {Number}
+     */
+
+    function getLineNum(mdsid) {
+      //如果当前警员正在占用一条线路，返回该线路
+      for ( var i = 0; i < 16; i++) {
+        if(linesInfo[i].mdsid == mdsid){
+          return i;
+        }
+      }
+      //否则返回一条空线路
+      for ( var i = 0; i < 16; i++) {
+        var a = IPDispatcherCtrl.GetLineState(i);
+        if (a == 0 && linesInfo[i].mdsid == '') {
+          linesInfo[i].mdsid = mdsid;
+          return i;
+        }
+      }
+      return -1;
+    }
+window.onbeforeunload = function () {
+  //alert("===onbeforeunload===");
+  // if (/event.clientX > document.body.clientWidth && event.clientY < 0) {
+  //alert("你关闭了浏览器");
+  //} else {
+  //alert("你正在刷新页面");
+
+  //var isInit = IPDispatcherCtrl.IsInitialize();
+  //var isLog = IPDispatcherCtrl.IsLogin();
+  //if (isInit == 1 && isLog==1)//登录
+  {
+    //IPDispatcherCtrl.Logout();
+    //alert("注销!");
+  }
+  //alert("注销!");
+  //alert("你正在刷新页面");
+  IPDispatcherCtrl.OnCloseIPDispatcher();
+  //IPDispatcherCtrl.DestroyInstance();
+  /*
+   var isInit = IPDispatcherCtrl.IsInitialize();
+   if (isInit == 1)
+   {
+   IPDispatcherCtrl.OnCloseIPDispatcher();
+   }
+   */
+
+  // }
+}
+
+  </script>
+</head>
+<body scroll="no" onload="this.initMDSParam()">
+<OBJECT ID='IPDispatcherCtrl' CLASSID='CLSID:A1347CC2-E5A5-4717-A8DA-CD0AA97A68D9' CODEBASE='IPDispatcherCOM.cab#version=1,0,0,1' width='0' height='0'></OBJECT>
+<div style='height:100%;width:100%;'>
+  <object id="VideoWindow0" classid="CLSID:FD968A91-02A5-4596-AA56-4368ED02DDD2" width="650px" height="600px"></object>
+</div>
+</body>
+</html>

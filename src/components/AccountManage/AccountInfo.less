@@ -1,0 +1,127 @@
+@import '../../themes/default.less';
+.accountinfo{
+  padding: 10px;
+  // border: 1px solid @border-color-base;
+  background-color: @am-background-color-deep;
+  height:820px;
+  :global {
+    /*.ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+      padding: 3px 8px;
+      word-break: break-word;
+    }*/
+    .ant-form-item{
+      margin-bottom: 20px;
+    }
+    .ant-input-disabled {
+      // pointer-events: none;
+      border: none;
+    }
+    .ant-input-disabled:hover{
+      cursor: default;
+      border: none;
+    }
+    .ant-switch-disabled {
+      pointer-events: none;
+      opacity: 1;
+    }
+    .ant-select-disabled {
+      // pointer-events: none;
+      border: none;
+    }
+    .ant-select-disabled:hover{
+      cursor: default!important;
+      border: none;
+    }
+    .ant-select-disabled .ant-select-selection {
+      border: none;
+    }
+    .ant-select-disabled .ant-select-arrow{
+      display: none;
+    }
+    .ant-input-search.ant-input-search-enter-button > .ant-input{
+      padding-right: 46px;
+      //pointer-events: none;
+    }
+    .ant-input-search.ant-input-search-enter-button > .ant-input:hover{
+      padding-right: 46px;
+      cursor: default;
+    }
+    /*.ant-form-item label{
+      pointer-events: none;
+    }*/
+
+    .ant-select{
+      width: 100%;
+    }
+
+    .ant-input-suffix .ant-btn-primary[disabled]{
+      display: none;
+    }
+    td{
+      padding: 6px 8px!important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal!important;
+    }
+  }
+}
+.infotitle {
+  color: @am-titlefont-color;
+  font-size: 15px;
+}
+.infocontent {
+  background-color: @component-background;
+  padding: 5px 10px;
+  margin-top: 7px;
+}
+.iprow{
+  margin-bottom: 5px;
+  :global{
+    .ant-tabs{
+      width: 100%;
+    }
+    .ant-tabs-bar{
+      margin: 0;
+    }
+    .ant-table-pagination.ant-pagination{
+      margin: 6px 0;
+    }
+    .ant-btn-sm{
+      padding: 0 15px;
+    }
+  }
+}
+
+.buttonleft{
+  margin-right: 10px;
+}
+.loadingDiv{
+  position:absolute;
+  z-index:999;
+  background-color: rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 100px 50px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  border-radius:3px;
+}
+.oprateButton{
+  background-color: rgba(0,0,0,0);
+  border-color: #34a9f700;
+  :global{
+    .ant-btn:hover{
+      background-color: rgba(0,0,0,0);
+      border-color: #34a9f700;
+    }
+    .ant-btn{
+      background-color: rgba(0,0,0,0);
+      border-color: #34a9f700;
+    }
+    .ant-btn:not(.ant-btn-circle):not(.ant-btn-circle-outline).ant-btn-icon-only{
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+}

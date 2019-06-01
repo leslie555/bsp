@@ -1,0 +1,17 @@
+.normal {
+  height: 80%;
+}
+/* 页面布局*/
+.router_out_size {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  & > div {
+    width: 100%;
+  }
+  & > div:last-child {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

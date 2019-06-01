@@ -1,0 +1,15 @@
+{
+  "name": "scs",
+  "version": "1.0.0",
+  "description": "hiatmp",
+  "license": "MIT",
+
+
+  "devDependencies": {
+    "postcss-less-engine": "^0.6.2",
+    "fs-extra": "^6.0.1"
+  },
+  "dependencies": {
+    "postcss-less-engine": "^0.6.2"
+  }
+}

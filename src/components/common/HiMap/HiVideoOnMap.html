@@ -1,0 +1,192 @@
+<html>
+<head>
+    <title>test</title>
+
+    <script language="javascript">
+        var GetInstanceCallback;
+        var getInstanceInterval = null;
+        var count = 0;
+        var videoOnMap = {
+            //平台登录
+            login: function (initpam, callback) {
+                console.log('开始登录');
+                GetInstanceCallback = callback;
+                if (!commonVideoActiveX.GetInstanceEx && !commonVideoActiveX.PlayEx) {
+                    getInstanceInterval = setInterval(function () {
+                        getInstance(initpam)
+                    }, 100);
+                } else {
+                    getInstance(initpam);
+                }
+            },
+            //单画面显示
+            SetLayout1: function () {
+                commonVideoActiveX.SetLayout(1);
+            },
+            //鹰眼两屏画面显示
+            SetLayout2: function () {
+                commonVideoActiveX.SetLayout(7);
+            },
+            //4画面显示
+            SetLayout4: function () {
+                commonVideoActiveX.SetLayout(2);
+                console.log('********切换为四分屏模式');
+            },
+            //工字型画面显示  鹰眼+球机、球机+鹰眼
+            SetLayout5: function () {
+                commonVideoActiveX.SetLayout(5);
+                console.log('********切换为工字型模式');
+            },
+            //设置焦点
+            SetFocus: function (params) {
+                commonVideoActiveX.SetFocus(params);
+                console.log('********设置播放窗口焦点: '+params);
+            },
+            //获取焦点
+            getCurrentFocus: function () {
+                var res = commonVideoActiveX.GetFocus();
+                console.log(res);
+            },
+            //播放单个视频
+            playOne: function (cameraid) {
+                console.log('播放视频编号: '+cameraid);
+                //commonVideoActiveX.PlayEx('37020000001310014755', 1);
+                commonVideoActiveX.PlayEx(cameraid, 1);
+                //commonVideoActiveX.GetInstance(1,12,'192.168.48.218;9999;26208115;AZV6S7e5xKGeVtNtxfTj');
+                //commonVideoActiveX.LocalPlay("c:\\users\\mtt\\desktop\\3.mp4");
+                //parent.recordDeviceThirdSyscode(cameraid);
+            },
+            //播放单个全景
+            playOneHighVideo: function (cameraid) {
+                console.log('playOneHighVideo: '+cameraid);
+                commonVideoActiveX.PlayEx(cameraid, 2);
+            },
+            //是否显示标签
+            isshowarlabel: function (IEnable) {
+                commonVideoActiveX.EnableLabels(IEnable);
+            },
+            //显示标签内容
+            showarlabel: function (pstrLabels) {
+                commonVideoActiveX.SetLabels(pstrLabels);
+            },
+            //播放本地视频
+            localplay: function (videopath) {
+                commonVideoActiveX.LocalPlay(videopath);
+            },
+            //停止播放视频
+            stopOne: function () {
+                commonVideoActiveX.Stop();
+            },
+            //根据设置的预置位调整摄像头
+            PTZPreset: function (presetIndex) {
+                commonVideoActiveX.PTZGotoPreset(presetIndex);
+            },
+            //云台方向控制
+            yuntaicontrol: function (direction, speed) {
+                commonVideoActiveX.PTZTilt(direction, parseInt(speed));
+            },
+            //云台播放停止
+            yuntaistop: function (direction) {
+                commonVideoActiveX.PTZTiltStop(direction);
+            },
+            //云台拉近
+            zoomin: function () {
+                commonVideoActiveX.PTZZoom(0);
+            },
+            //云台推远
+            zoomout: function () {
+                commonVideoActiveX.PTZZoom(1);
+            },
+            //停止云台拉近和推远
+            stopzoom: function () {
+                commonVideoActiveX.PTZZoomStop();
+            },
+            //打开雨刷
+            auxwiper: function () {
+                commonVideoActiveX.PTZAux(2);
+            },
+            //关闭雨刷
+            auxwiperstop: function () {
+                commonVideoActiveX.PTZAuxStop(2);
+            }
+        };
+        function islogin(params, GetInstanceCallback) {
+            videoOnMap.login(params, GetInstanceCallback);
+        }
+
+
+        function getInstance(initpam) {
+            if(count>10){
+                clearInterval(getInstanceInterval);
+                getInstanceInterval = null;
+            }
+            count++;
+            if (!commonVideoActiveX.GetInstanceEx && !commonVideoActiveX.PlayEx) {
+                if (typeof initpam === 'string') {
+                    commonVideoActiveX.GetInstanceEx(initpam);
+                } else {//如果是1.0形式
+                    commonVideoActiveX.GetInstance(initpam.strIndex, initpam.nCmsType, initpam.strURL);
+                }
+            }
+        }
+
+        function callback() {
+            if (typeof(parent) !== 'undefined' && null !== parent) {
+                if (typeof(parent.onvideoloadOnMap) !== 'undefined') {
+                    parent.onvideoloadOnMap(getUniqueVideoIdString('vid'));
+                }
+            }
+        }
+
+        function getUniqueVideoIdString(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+          var r = window.location.search.substr(1).match(reg);
+          if (r !== null) {
+            return unescape(r[2]);
+          } else {
+            return null;
+          }
+        }
+
+    </script>
+    <script language="javascript" FOR="commonVideoActiveX" EVENT="OnGetInstance(lIndex)">
+        console.log('1.0登录成功，回调');
+        clearInterval(getInstanceInterval);
+
+        GetInstanceCallback.call(this, 'success');
+    </script>
+
+    <script language="javascript" FOR="commonVideoActiveX" EVENT="OnGetInstanceFailed(lIndex,error)">
+        console.log('1.0登录失败，回调');
+        clearInterval(getInstanceInterval);
+        GetInstanceCallback.call(this, 'false');
+    </script>
+
+    <script language="javascript" FOR="commonVideoActiveX" EVENT="OnGetInstanceEx()">
+        console.log('2.0登录成功，回调');
+        clearInterval(getInstanceInterval);
+        t = null;
+        GetInstanceCallback.call(this, 'success');
+    </script>
+
+    <script language="javascript" FOR="commonVideoActiveX" EVENT="OnGetInstanceFailedEx(error)">
+        console.log('2.0登录失败，回调');
+        clearInterval(getInstanceInterval);
+        GetInstanceCallback.call(this, 'false');
+    </script>
+    <script language="javascript" FOR="commonVideoActiveX" EVENT="OnFocusChanged(lWndIndex)">
+        //WriteLog2("focus changed " + lWndIndex);
+        console.log(lWndIndex);
+    </script>
+
+</head>
+
+<body onload="callback()">
+<center>
+    <object id="commonVideoActiveX" classid="clsid:A8B6BBF3-DA78-4BCB-ABAB-FB0410A463E4" width=100% height=99%
+            codebase="/CommonCMSOCX.cab#version=1,0,0,1729" VIEWASTEXT>
+    </object>
+</center>
+</body>
+
+</html>

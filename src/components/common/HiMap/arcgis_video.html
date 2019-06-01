@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<head>
+    <meta content="text/html; charset=utf-8" />
+    <script src="/HiatmpPro/HiMap/vendor/jquery/jquery-1.10.2.min.js"></script>
+    <script src="/HiatmpPro/HiMap/vendor/jqueryui/js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/HiatmpPro/HiMap/vendor/jqueryui/css/themes/base/jquery-ui.css">
+    <script src="/HiatmpPro/assets/js/bsp/index/commonVideoControl.js"></script>
+    <link rel="stylesheet" href="/HiatmpPro/HiMap/modules/index/css/videoDialog.css" />
+    <script src="/HiatmpPro/HiMap/modules/index/js/videoDialog.js"></script>
+
+    <script language="javascript" FOR="commonVideoActive" EVENT="OnGetInstanceEx(lIndex)">
+	    _islogin = true;
+		console.log("实例化成功");
+	    if (_camerArray[_currentIndex] != null) {
+	        playVideo(_camerArray[_currentIndex].cameraId, _camerArray[_currentIndex].controlPattern);
+	    }
+    </script>
+
+    <script language="javascript" FOR="commonVideoActive" EVENT="OnGetInstanceFailedEx(lIndex,error)">
+    	console.log("实例化失败："+lIndex+"+"+error);
+    </script>
+
+    <script language="javascript" FOR="commonVideoActive" EVENT="OnPlay(index, cameraId)">
+		console.log("播放成功");
+	    if (_camerArray[index] == null) {
+	        _camerArray[index] = { cameraId: cameraId, controlPattern: 1 };
+	    }
+	    if (!isSaveBusy) {
+	        isSaveBusy = true;
+	        isSuccess = true;
+	        //saveVideoLog("1", "", "", "", cameraId);
+	    }
+		shownvideoArr[index] = cameraId;
+		deviceidArr[index] = currdeviceid + "";
+		videoDialog.initPresetBtn(cameraId);
+    </script>
+
+    <script language="javascript" FOR="commonVideoActive" EVENT="OnPlayError(index, cameraId)">
+	    console.log("播放失败");
+		if (_camerArray[index] == null) {
+	        _camerArray[index] = { cameraId: cameraId, controlPattern: 1 };
+	    }
+	    if (!isSaveBusy) {
+	        isSaveBusy = true;
+	        isSuccess = false;
+	        //saveVideoLog("1", "", "", "", cameraId);
+	    }
+    </script>
+
+    <script language="javascript" FOR="commonVideoActive" EVENT="OnFocusChanged(screenIndex)">
+		console.log("切换到："+screenIndex);
+   		_currentIndex = screenIndex; //设置当前屏焦点编号
+		currentIndex = screenIndex;
+		var thirdsyscode = shownvideoArr[screenIndex];
+		videoDialog.initPresetBtn(thirdsyscode);
+    </script>
+
+    <title>maptest</title>
+    <style>
+    html,
+    body,
+    #map {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    </style>
+    <script type="text/javascript">
+		//var _MapApp;
+		function setMapWidthAndHeight() {
+			document.getElementById("mapframe").style.width = document.body.clientWidth + 'px';
+			document.getElementById("mapframe").style.height = document.body.clientHeight + 'px';
+		}
+    </script>
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden" onload="setMapWidthAndHeight()">
+    <div class="container-fluid" id="mapdiv">
+        <iframe id="mapframe" src="map1.html" width="100%" height="1080px" style="margin: 0"></iframe>
+    </div>
+</body>
+
+</html>

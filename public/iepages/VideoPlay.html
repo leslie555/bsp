@@ -1,0 +1,125 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>视频播放</title>
+  <style>
+    body {
+      margin: 0px;
+      overflow: hidden
+    }
+  </style>
+  <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="HiMsg.js"></script>
+
+  <script type="text/javascript">
+    var GetInstanceCallback;
+//        alert(window.document.location.href);
+    //    var winurl=window.document.location.href;
+    function GetUrlParam(paraName) {
+      var url = window.document.location.href.toString();
+      var arrObj = url.split("?");
+
+      if (arrObj.length > 1) {
+        var arrPara = arrObj[1].split("&");
+        var arr;
+
+        for (var i = 0; i < arrPara.length; i++) {
+          arr = arrPara[i].split("=");
+
+          if (arr != null && arr[0] == paraName) {
+            return arr[1];
+          }
+        }
+        return "";
+      }
+      else {
+        return "";
+      }
+    }
+    //播放单个视频
+    function playOne(cameraid) {
+     // console.log('playOne: '+cameraid);
+      commonVideoActiveX.Play(cameraid,1);
+//                parent.recordDeviceThirdSyscode(cameraid);
+    }
+    function login(initpam, callback) {
+     // console.log('开始登录');
+      GetInstanceCallback = callback;
+      //如果是2.0.形式
+      if(typeof initpam == 'string'){
+        commonVideoActiveX.GetInstanceEx(initpam);
+      }else{//如果是1.0形式
+        try {
+          commonVideoActiveX.GetInstance(initpam.strURL);
+        }catch(e){
+            alert('请安装视频控件！');
+        }
+//        commonVideoActiveX.GetInstance('http://10.16.2.225:8081/VideoService/query?wsdl');
+//                    commonVideoActiveX.GetInstance(initpam.strIndex, initpam.nCmsType,initpam.StrURL);
+      }
+    }
+
+    //    var mdsid=GetUrlParam("policeid");//警号
+    //    alert(mdsid);
+    function initMDSParam()
+    {
+      var url = "/HiatmpPro/scs/common/getParams?paramcode="+"COMM_VIDEO_QUERY_LOCATION";
+      $.ajax({
+        url:url,
+        type: 'get',
+        dataType:'json',
+        cache: false,
+        success: function (data) {
+//            alert(data.data+'------------');
+          var params = data.params;
+          var paramvalue = params[0].paramvalue;
+          var initParam = {
+            strIndex: 1,//平台唯一
+            nCmsType: 12, //平台类型
+            strURL: paramvalue
+          }
+           login(initParam, function(params) {
+//         var  params=login(initParam,params);
+            if (params == 'success') {
+//              this.setState({haslogin: true});
+//              this.props.dispatch({type: 'videoInspectionData/updateHasLogin', payload: {hasLogin: true}})
+              var thirdsyscode=GetUrlParam("thirdsyscode");//第三方编号
+              playOne(thirdsyscode);
+            } else {
+              alert('初始化失败');
+            }
+          });
+
+        }
+      });
+
+    }
+
+
+  </script>
+  <script language="javascript" FOR="commonVideoActiveX" EVENT="OnGetInstance(lIndex)">
+   // console.log('1.0登录成功，回调');
+    GetInstanceCallback.call(this, 'success');
+  </script>
+
+  <script language="javascript" FOR="commonVideoActiveX" EVENT="OnGetInstanceFailed(lIndex,error)">
+   // console.log('1.0登录失败，回调');
+    GetInstanceCallback.call(this, 'false');
+  </script>
+
+  <script language="javascript" FOR="commonVideoActiveX" EVENT="OnGetInstanceEx()">
+   // console.log('2.0登录成功，回调');
+    GetInstanceCallback.call(this, 'success');
+  </script>
+
+  <script language="javascript" FOR="commonVideoActiveX" EVENT="OnGetInstanceFailedEx(error)">
+   // console.log('2.0登录失败，回调');
+    GetInstanceCallback.call(this, 'false');
+  </script>
+</head>
+<body scroll="no" onload="this.initMDSParam()">
+<object id="commonVideoActiveX" classid="clsid:A8B6BBF3-DA78-4BCB-ABAB-FB0410A463E4" width=100% height=99%
+        codebase="/CommonCMSOCX.cab#version=1,0,0,1729" VIEWASTEXT>
+</object>
+</body>
+</html>

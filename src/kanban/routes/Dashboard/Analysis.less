@@ -1,0 +1,49 @@
+@import '../../../themes/default.less';
+
+.normal {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+td.alignRight,
+th.alignRight {
+  text-align: right !important;
+}
+
+.mapButton {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  cursor: pointer;
+}
+
+.frameContain {
+  overflow-y: auto;
+  width: 100%;
+  height: e('calc(100vh - 136px)');
+}
+.arow {
+  margin-left: 0px !important;
+  margin-bottom: 2px;
+  margin-top: 18px;
+}
+
+.brow {
+  margin: 0px 6px !important ;
+}
+
+.bcol {
+
+  :global(.ant-card-head) {
+    background: @tabs-card-head-background;
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+  }
+
+  min-height: 260px;
+  color: #999;
+  margin: 10px 0;
+  font-size: 10px;
+  line-height: 10px;
+  float: left;
+}

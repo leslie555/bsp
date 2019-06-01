@@ -1,0 +1,263 @@
+@import '../../themes/default.less';
+
+.header {
+  padding: 0 12px 0 0;
+  background: url('/HiatmpPro/kanban/aheader.png') no-repeat center;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  position: relative;
+}
+
+.trigger {
+  font-size: 20px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0 24px;
+  &:hover {
+    background: @primary-1;
+  }
+}
+.rightUser {
+  color: @text-white;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0 3px;
+  &:hover {
+    background: @body-background;
+    color: @text-white;
+  }
+}
+.rightUser1 {
+  color: @text-color;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding-bottom: 4px;
+  padding-right: 3px;
+  &:hover {
+    background: @primary-color;
+  }
+}
+.helpDoc {
+  bottom: 50px;
+  font-size: 50px;
+  line-height: 60px;
+  cursor: pointer;
+  text-align: center;
+  background: @primary-1;
+  &:hover {
+    background-color: @primary-color;
+  }
+}
+.setIcon {
+  position: absolute;
+  width: 100%;
+  bottom: 45px;
+  font-size: 16px;
+  line-height: 36px;
+  height: 36px;
+
+  cursor: pointer;
+  text-align: center;
+  border-top: 1px solid @primary-color;
+  &:hover {
+    background-color: @primary-color;
+  }
+}
+
+.menupopover {
+  :global {
+    .ant-popover-inner-content {
+      padding: 0;
+    }
+  }
+}
+.menuIcon {
+  position: absolute;
+  width: 100%;
+  bottom: 5px;
+  font-size: 16px;
+  line-height: 36px;
+  height: 36px;
+  cursor: pointer;
+  text-align: center;
+  border-top: 1px solid @primary-color;
+}
+
+@media screen and (max-width: @screen-xs) {
+  .trigger {
+    display: none;
+  }
+}
+
+.right {
+  float: right;
+  height: 98%;
+  .action {
+    cursor: pointer;
+    padding: 0 12px;
+    display: inline-block;
+    transition: all 0.3s;
+    height: 100%;
+    background-color: transparent;
+    border-color: @commonLightColor;
+    > i {
+      font-size: 16px;
+      vertical-align: middle;
+    }
+    &:hover {
+      background: @primary-color;
+      color: @text-white;
+    }
+  }
+  .search {
+    padding: 0;
+    margin: 0 12px;
+    &:hover {
+      background: transparent;
+    }
+  }
+  .account {
+    .avatar {
+      margin: 20px 8px 20px 0;
+      color: @primary-color;
+      background: rgba(255, 255, 255, 0.85);
+      vertical-align: middle;
+    }
+  }
+}
+
+.menu {
+  :global(.anticon) {
+    margin-right: 8px;
+  }
+  :global(.ant-dropdown-menu-item) {
+    width: 160px;
+  }
+}
+.setList {
+  :global(.anticon) {
+    margin-right: 8px;
+  }
+  :global(.ant-dropdown-menu-item) {
+    font-size: 16px;
+    text-align: center;
+    width: 160px;
+    height: 30px;
+  }
+}
+#themeCard:global(.ant-card) {
+  display: inline-block;
+}
+
+// 左侧菜单栏整体样式
+.leftSider {
+  background-color: @background-color-light;
+  height: ~'calc(100vh - 58px)';
+  margin-top: -6px;
+  position: relative;
+  :global {
+    .ant-menu-item-selected {
+      background-color: @background-color-light!important;
+      color: @primary-color;
+    }
+    .ant-menu-item-selected:after {
+      border-right: 3px solid @primary-color!important;
+    }
+    .ant-menu-item {
+      padding-left: 12px !important;
+    }
+  }
+}
+// 左侧菜单栏设置区域样式
+.leftSider2 {
+  background-color: @body-background;
+  height: ~'calc(100vh - 70px)';
+  box-shadow: 2px 0 6px #f5f5f5;
+  position: relative;
+}
+
+.base {
+  :global {
+    .ant-layout-sider-children {
+      background: @component-background;
+    }
+    .ant-menu-inline-collapsed {
+      width: 2px !important;
+    }
+    // 左侧菜单栏折叠时得样式，目前版本用不到
+    .ant-layout-sider.ant-layout-sider-collapsed {
+      flex: 0 0 2px !important;
+      width: 2px !important;
+      max-width: 2px !important;
+      min-width: 2px !important;
+    }
+    .ant-layout-sider-collapsed {
+      flex: 0 0 2px !important;
+      width: 2px !important;
+      max-width: 2px !important;
+      min-width: 2px !important;
+    }
+    // card样式
+    .ant-card-head {
+      height: 40px;
+      min-height: 35px;
+      padding: 0 12px;
+    }
+    .ant-card-head-title {
+      padding: 5px 0;
+    }
+    .ant-card-extra {
+      padding: 10px 0;
+    }
+    table{
+      padding: 0;
+    }
+  }
+}
+.menuBar {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 30px;
+  text-align: left;
+}
+
+:global .ant-cascader-menu {
+  display: inline-block;
+  vertical-align: top;
+  min-width: 111px;
+  list-style: none;
+  margin: 0;
+  height: 38vh;
+  padding: 0;
+  border-right: 1px solid #e8e8e8;
+  overflow: auto;
+}
+
+.rightSider {
+  background-color: @background-color-light;
+  height: ~'calc(100vh - 77px)';
+  //box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+  position: relative;
+  z-index: 10;
+}
+.menuButton {
+  width: 120px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.tableSelectedRowStyle {
+  cursor: pointer;
+}
+.spinmask {
+  :global {
+    .ant-spin-blur {
+      pointer-events: none;
+      user-select: none;
+      overflow: hidden;
+      opacity: 0.7;
+      filter: opacity(0.2) blur(1px);
+    }
+  }
+}

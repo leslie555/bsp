@@ -1,0 +1,46 @@
+@import '../../themes/default.less';
+
+.title {
+  display: inline-block;
+  background: url('/HiatmpPro/kanban/atitle.png') no-repeat;
+  min-width: 600px;
+  min-height: 62px;
+}
+
+.titleright {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  min-width: 142px;
+  min-height: 62px;
+  background: url('/HiatmpPro/kanban/areturn.png') no-repeat;
+  cursor: pointer;
+}
+.main {
+  overflow: hidden;
+  :global {
+    .ant-btn-background-ghost.ant-btn-primary {
+      font-size: 30px;
+      color: @text-color;
+      border-radius: 24px;
+    }
+    .ant-btn-background-ghost.ant-btn-primary:hover,
+    .ant-btn-background-ghost.ant-btn-primary:focus {
+      color: @text-color;
+    }
+  }
+
+  .container {
+    &:before {
+      position: relative;
+      top:22px;
+      content: ''; //设置内容为空
+      display: block; //将文本转为块级元素
+      height: 2px;
+      width: 100%;
+      margin: 0;
+      background: radial-gradient(rgb(10, 239, 237) 0%, rgba(5, 18, 36, 0.3) 80%);
+    }
+  }
+}

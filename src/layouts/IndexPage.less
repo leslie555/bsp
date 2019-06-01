@@ -1,0 +1,47 @@
+@import '../themes/default.less';
+.normal {
+  background-color: @body-background;
+  height: 100%;
+  overflow: auto;
+}
+.headerStyle {
+  background: linear-gradient(to right, #214db0, #427ad4);
+  height: 60px;
+  :global{
+    .ant-btn:hover{
+      background-color: rgba(0,0,0,0);
+      border-color: #34a9f700;
+      color: #fff;
+    }
+    .ant-btn:focus{
+      background-color: rgba(0,0,0,0);
+      border-color: #34a9f700;
+      color: #fff;
+    }
+    .ant-btn{
+      background-color: rgba(0,0,0,0);
+      border-color: #34a9f700;
+      color: #fff;
+    }
+  }
+}
+.userDropStyle{
+  :global{
+    .ant-dropdown-menu-item{
+      padding: 5px 18px;
+    }
+  }
+}
+
+.title {
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+.contentStyle {
+  height: 100%;
+  overflow: visible;
+}
+.contentStyle :global .ant-tabs-content {
+  height: 95%;
+}

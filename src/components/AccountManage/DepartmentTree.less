@@ -1,0 +1,41 @@
+@import '../../themes/default.less';
+.department {
+  background-color: @am-background-color-dark;
+}
+
+.header {
+  font-size: 15px;
+  font-weight: bold;
+  height: 40px;
+  color:@am-titlefont-color;
+  background-color: @am-background-color-light;
+}
+
+.headerInter {
+  padding: 5px 15px;
+  background-color: @am-background-color-deep;
+}
+
+.headerUnder {
+  padding: 5px 15px;
+  background-color: @am-background-color-deep;
+}
+
+.treeStyle{
+  height: 756px;
+  width: 100%;
+  overflow: auto;
+  :global{
+    .ant-tree li{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal!important;
+    }
+    .ant-tree li .ant-tree-node-content-wrapper{
+      width: 80%!important;
+    }
+    .ant-tree li .ant-tree-node-selected.ant-tree-node-content-wrapper{
+      width: 80%!important;
+    }
+  }
+}

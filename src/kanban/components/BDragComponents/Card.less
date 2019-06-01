@@ -1,0 +1,88 @@
+@import '../../../themes/default.less';
+
+.bcardStyle {
+  min-height: 338px;
+  :global {
+    .ant-card-body {
+      min-height: 270px;
+      padding: 5px 0;
+    }
+  }
+}
+.bSmallcardStyle {
+  height: 192px;
+}
+.title {
+  display: inline-block;
+  font-size: 18px;
+  float: left;
+  &:before {
+    font-size: 20px;
+    content: '|';
+    display: inline-block;
+    color: #115fbb;
+    margin-right: 6px;
+  }
+}
+.tableSelectedRowStyle {
+  cursor: pointer;
+}
+.modalbodyxx {
+  max-height: 600px;
+  overflow: auto;
+
+  :global {
+    .ant-modal-body {
+      background-color: @component-background!important;
+    }
+  }
+}
+.hoverRow {
+  cursor: pointer;
+}
+.tableoddRow {
+  cursor: pointer;
+  background-color: @background-color-light;
+}
+.tableevenRow {
+  cursor: pointer;
+  background-color: transparent;
+}
+.raidostyle {
+  :global {
+    .ant-radio-button-wrapper {
+      background-color: @body-background!important;
+    }
+  }
+}
+.b3 {
+  padding: 0 10px;
+  :global {
+    table {
+      border-collapse: separate;
+      border-spacing: 0.25vw;
+      table-layout: fixed;
+    }
+    td {
+      background-color: @background-color-light;
+      padding: 6px 8px !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    th {
+      color: @border-color-split!important;
+    }
+  }
+}
+.b5 {
+  :global {
+    td {
+      padding: 6px 8px !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    th {
+      color: @border-color-split!important;
+    }
+  }
+}

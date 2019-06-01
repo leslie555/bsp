@@ -1,0 +1,135 @@
+.leftbeijing {
+  padding: 1.4px;
+  display: inline-block;
+  width: 35%;
+  height: 100%;
+  float: left;
+  z-index: 1;
+  position: absolute;
+}
+
+.cardStyle {
+  height: 142px;
+  cursor: pointer;
+
+  .aContentImg {
+    width: 34%;
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 6%;
+    z-index: 2;
+    position: relative;
+
+    .img {
+      width: 40%;
+    }
+    div {
+      position: relative;
+      color: #fff;
+    }
+  }
+  .aContentRight {
+    width: 65%;
+    margin-top: 9%;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    span:first-child {
+      font-size: 30px;
+    }
+    span:nth-child(2) {
+      font-size: 16px;
+    }
+  }
+}
+
+.aSmallCardStyle {
+  height: 124px;
+  cursor: pointer;
+  .aContentImg {
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 6%;
+    z-index: 2;
+    position: relative;
+
+    .img {
+      width: 40%;
+    }
+    div {
+      position: relative;
+      color: #fff;
+    }
+  }
+  .aContentRight {
+    width: 59%;
+    margin-top: 9%;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    span:first-child {
+      font-size: 16px;
+    }
+    span:nth-child(2) {
+      font-size: 12px;
+    }
+  }
+}
+.normal {
+
+  :global {
+    .ant-card-head {
+      border-bottom: 0px;
+      border-radius: 2px 2px 0 0;
+    }
+  }
+}
+
+.cardStyle2 {
+  height: 120px;
+
+  .acontent {
+    color:white;
+    position: relative;
+    line-height: 20px;
+    height: 80px;
+    margin: 10px auto;
+    text-align: center;
+    span:first-child {
+      font-size: 60px;
+    }
+    span:nth-child(2) {
+      font-size: 16px;
+    }
+  }
+}
+.aSmallcardStyle2 {
+  height: 100px;
+  .acontent {
+    color:white;
+    position: relative;
+    line-height: 20px;
+    height: 60px;
+    margin: 10px auto;
+    text-align: center;
+    span:first-child {
+      font-size: 40px;
+    }
+    span:nth-child(2) {
+      font-size: 16px;
+    }
+  }
+}
+
+.hoverpointer {
+  cursor: pointer;
+  background: url('/HiatmpPro/kanban/acomponent1.png') no-repeat center;
+  &:hover {
+  }
+}
+.smallPointerBGColor {
+  background-color: #e08649 !important;
+}
